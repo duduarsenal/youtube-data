@@ -1,6 +1,9 @@
 import React from "react";
 
 export default function ChannelData() {
+
+  
+
   return (
     <section className="bg-[#111111] w-[50%] h-max rounded-lg px-8 py-4 text-white">
       <h1 className="w-full font-[700] h-12 flex items-center text-[1.5rem] text-[#E5383B]">

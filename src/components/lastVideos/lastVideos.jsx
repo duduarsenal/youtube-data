@@ -23,6 +23,12 @@ export function BoxVideo() {
         {/* Futura IMG com tag A para ancora */}
       </div>
       <div className="flex flex-col py-2">
+      <div className="flex gap-2">
+          <label htmlFor="likesCount" className="font-[600] text-[#BA181B]">
+            Visualizações:{" "}
+          </label>
+          <p>102.585</p>
+        </div>
         <div className="flex gap-2">
           <label htmlFor="likesCount" className="font-[600] text-[#BA181B]">
             Likes:{" "}
