@@ -7,6 +7,7 @@ import LastVideos from "./components/lastVideos/lastVideos";
 function App() {
   const [statistics, setStatistics] = useState({});
   const [videos, setVideos] = useState();
+  const url = process.env.URL_BACKEND;
   // const [invalidChannel, setInvalidChannel] = useState();
 
   async function getSubmitChannel(channel) {
@@ -87,7 +88,7 @@ function App() {
 
   async function getChannelStatistics(channelID){
     try {
-      const urlResponse = await fetch(`http://localhost:3030/api/statistics/${channelID}`);
+      const urlResponse = await fetch(`${url}/api/statistics/${channelID}`);
       const response = await urlResponse.json();
 
       return response;
@@ -100,7 +101,7 @@ function App() {
   async function getChannelVideos(channelID){
     channelID = channelID.replace(channelID[1], "U")
     try{
-      const urlResponse = await fetch(`http://localhost:3030/api/videos/${channelID}`);
+      const urlResponse = await fetch(`${url}/api/videos/${channelID}`);
       const response = await urlResponse.json();
 
       return response;
