@@ -35,7 +35,7 @@ export default function LastVideos(props) {
         dataPub: publishedAt ? formatDate(publishedAt) : " ",
         href: resourceId ? `https://youtube.com/watch?v=${resourceId.videoId}` : "#",
         views: viewCount ? formatNumber(viewCount) : " ",
-        thumb: thumbnails ? thumbnails.medium.url : "https://images.unsplash.com/flagged/photo-1593005510509-d05b264f1c9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVkJTIwY29sb3J8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
+        thumb: thumbnails ? thumbnails.medium.url : "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png",
         commentCount: commentCount ? formatNumber(commentCount) : " ",
         likeCount: likeCount ? formatNumber(likeCount) : " ",
       }
@@ -85,25 +85,25 @@ export function BoxVideo(props) {
       </div>
       <div className="flex flex-col py-2">
         <div className="flex gap-2">
-          <label htmlFor="likesCount" className="font-[600] text-[#BA181B]">
+          <label htmlFor="likesCount" className="font-[600] text-blue">
             Data de publicação:{" "}
           </label>
           <p>{props.dataPub}</p>
         </div>
         <div className="flex gap-2">
-          <label htmlFor="likesCount" className="font-[600] text-[#BA181B]">
+          <label htmlFor="likesCount" className="font-[600] text-blue">
             Visualizações:{" "}
           </label>
           <p>{props.views}</p>
         </div>
         <div className="flex gap-2">
-          <label htmlFor="likesCount" className="font-[600] text-[#BA181B]">
+          <label htmlFor="likesCount" className="font-[600] text-blue">
             Likes:{" "}
           </label>
           <p>{props.likes}</p>
         </div>
         <div className=" flex gap-2">
-          <label htmlFor="commentsCount" className="font-[600] text-[#BA181B]">
+          <label htmlFor="commentsCount" className="font-[600] text-blue">
             Comentarios:{" "}
           </label>
           <p>{props.comments}</p>

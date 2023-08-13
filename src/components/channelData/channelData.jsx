@@ -42,7 +42,7 @@ export default function ChannelData(props) {
     let dataPub = publishedAt ? formatDate(publishedAt) : " ";
     let subCount = subscriberCount ? formatNumber(subscriberCount) : " ";
     let views = viewCount ? formatNumber(viewCount) : " "
-    let thumb = thumbnails ? thumbnails.medium.url : "https://images.unsplash.com/flagged/photo-1593005510509-d05b264f1c9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVkJTIwY29sb3J8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+    let thumb = thumbnails ? thumbnails.medium.url : "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png"
 
     setSanitizeValues({title, customUrl, dataPub, thumb, subCount, views, videoCount})
   }
@@ -54,31 +54,31 @@ export default function ChannelData(props) {
 
   return (
     <section className="bg-[#111111] w-[95%] lg:w-[50%] h-max rounded-lg px-1 sm:px-8 text-white">
-      <h1 className="w-full font-[700] h-12 flex items-center sm:justify-start justify-center text-[1.5rem] text-[#E5383B]">
+      <h1 className="w-full font-[700] h-12 flex items-center sm:justify-start justify-center text-[1.5rem] text-blue">
         Estatísticas do Canal
       </h1>
       <div className="flex justify-between items-center flex-col-reverse sm:flex-row">
         <ul className="flex flex-col items-start justify-center py-4">
           <div className="flex gap-2">
-            <label htmlFor="subs" className="font-[600] text-[#BA181B]">
+            <label htmlFor="subs" className="font-[600] text-blue">
               Nome do Canal:{" "}
             </label>
             <li>{sanitizeValues.title}</li>
           </div>
           <div className="flex gap-2">
-            <label htmlFor="subs" className="font-[600] text-[#BA181B]">
+            <label htmlFor="subs" className="font-[600] text-blue">
               Custom URL:{" "}
             </label>
             <li>{sanitizeValues.customUrl}</li>
           </div>
           <div className="flex gap-2">
-            <label htmlFor="subs" className="font-[600] text-[#BA181B]">
+            <label htmlFor="subs" className="font-[600] text-blue">
               Data de Criação:{" "}
             </label>
             <li>{sanitizeValues.dataPub}</li>
           </div>
           <div className="flex gap-2">
-            <label htmlFor="subs" className="font-[600] text-[#BA181B]">
+            <label htmlFor="subs" className="font-[600] text-blue">
               Inscritos:{" "}
             </label>
             <li>
@@ -86,7 +86,7 @@ export default function ChannelData(props) {
             </li>
           </div>
           <div className="flex gap-2">
-            <label htmlFor="views" className="font-[600] text-[#BA181B]">
+            <label htmlFor="views" className="font-[600] text-blue">
               Visualizações:{" "}
             </label>
             <li>
@@ -94,7 +94,7 @@ export default function ChannelData(props) {
             </li>
           </div>
           <div className="flex gap-2">
-            <label htmlFor="videoCount" className="font-[600] text-[#BA181B]">
+            <label htmlFor="videoCount" className="font-[600] text-blue">
               Videos postados:{" "}
             </label>
             <li>
