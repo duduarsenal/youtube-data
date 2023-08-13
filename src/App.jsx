@@ -8,7 +8,7 @@ import LastVideos from "./components/lastVideos/lastVideos";
 function App() {
   const [statistics, setStatistics] = useState({});
   const [videos, setVideos] = useState();
-  const url = import.meta.env.VITE_URL_BACKEND;
+  const url = process.env.VITE_URL_BACKEND;
   // const [invalidChannel, setInvalidChannel] = useState();
 
   async function getSubmitChannel(channel) {
