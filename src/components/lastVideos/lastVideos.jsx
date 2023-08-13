@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 export default function LastVideos(props) {
 
-  const [videosChannel, setVideosChannel] = useState({});
+  // const [videosChannel, setVideosChannel] = useState({});
   const [sanitizeValues, setSanitizeValues] = useState([]);
 
   function formatDate(date) {
@@ -20,13 +20,8 @@ export default function LastVideos(props) {
   function formatNumber(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
-  // useEffect(() => {
-  //   if (statisticsChannel)
-  // }, [])
-  
+
   async function setValues(){
-    // console.log(props.videos);
-    // setStatisticsChannel(props.statistics)
     
     const arrayVideos = props.videos && props.videos.map(async (video) => {
       const {title, publishedAt, resourceId, viewCount, thumbnails, commentCount, likeCount} = video;
@@ -43,7 +38,6 @@ export default function LastVideos(props) {
     })
 
     arrayVideos ? setSanitizeValues(await Promise.all(arrayVideos)) : "";
-    // console.log(sanitizeValues);
   }
 
   useEffect(() => {
@@ -56,7 +50,7 @@ export default function LastVideos(props) {
       <h1 className="text-[1.5rem]">Videos mais recentes</h1>
       <div className="flex flex-wrap items-center justify-evenly w-full">
       {
-        sanitizeValues.map((video) => (
+        sanitizeValues.length > 0 ? sanitizeValues.map((video) => (
           <BoxVideo 
           key={video.title} 
           title={video.title}
@@ -67,7 +61,7 @@ export default function LastVideos(props) {
           comments={video.commentCount}
           likes={video.likeCount}
           />
-        ))
+        )) : <BoxVideo />
       }
       </div>
     </section>
@@ -77,10 +71,10 @@ export default function LastVideos(props) {
 export function BoxVideo(props) {
   return (
     <article className="flex flex-col justify-between bg-[#80808015] rounded-lg px-3 py-4 my-4 w-[23rem] min-h-[25rem] h-max">
-      <h1 className="text-center min-h-[4rem]">{props.title}</h1>
+      <h1 className={`${props.title ? 'text-[1rem]' : 'text-[1.5rem]'} text-center min-h-[4rem]`}>{props.title || "Titulo do Video"}</h1>
       <div className="w-full">
         <a href={props.href} target="_blank" className="hover:brightness-50 transition-all duration-300">
-          <img src={props.thumb} className="w-full"/>
+          <img src={props.thumb || "https://htmlcolorcodes.com/assets/images/colors/gray-color-solid-background-1920x1080.png"} className="w-full"/>
         </a>
       </div>
       <div className="flex flex-col py-2">
