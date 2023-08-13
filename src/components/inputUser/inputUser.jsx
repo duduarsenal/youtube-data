@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function InputUser(props) {
 
-    const [submitChannel, setSubmitChannel] = useState("@Duelista");
+    const [submitChannel, setSubmitChannel] = useState("");
 
     return ( 
         <section className='w-[95%] lg:w-[50%] flex flex-col m-auto px-2 sm:px-8 gap-8 text-white'>

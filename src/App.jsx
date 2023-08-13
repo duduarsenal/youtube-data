@@ -5,6 +5,7 @@ import InputUser from "./components/inputUser/inputUser";
 import ChannelData from "./components/channelData/channelData";
 import LastVideos from "./components/lastVideos/lastVideos";
 import InvalidURL from "./components/invalidURL/invalidURL";
+import Loading from "./components/loading/loading";
 
 function App() {
   const [statistics, setStatistics] = useState({});
@@ -13,12 +14,15 @@ function App() {
   const url = import.meta.env.VITE_URL_BACKEND;
   const [invalidChannel, setInvalidChannel] = useState(false);
   const [siteClickabe, setSiteClickabe] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function getSubmitChannel(channel) {
+    setLoading(true)
     const channelID = await validadeChannel(channel);
     // console.log(channel);
     // console.log(channelID);
     if (!channelID) {
+      setLoading(false);
       setInvalidChannel(true);
       setSiteClickabe(false);
     }
@@ -81,13 +85,10 @@ function App() {
   }
 
   async function getChannelData(channelID) {
-    const statistics = await getChannelStatistics(channelID); //setstatistics
-    const videodetails = await getChannelVideos(channelID); //setvideos
+    const statistics = await getChannelStatistics(channelID) //setstatistics
+    const videodetails = await getChannelVideos(channelID) //setvideos
 
-    if (!statistics || !videodetails) {
-      // console.log("Respostas: " + statistics + " e " + videodetails);
-    }
-
+    setLoading(false);
     setStatistics(statistics);
     setVideos(videodetails);
   }
@@ -126,6 +127,7 @@ function App() {
         setInvalidChannel={setInvalidChannel}
         setSiteClickabe={setSiteClickabe}
       />
+      <Loading loading={loading}/>
       <div className={`${siteClickabe ? 'pointer-events-auto' : 'pointer-events-none'}`}>
         <div className="flex justify-center items-center flex-col lg:flex-row gap-4 pb-4 pt-1">
           <ChannelData statistics={statistics} />
