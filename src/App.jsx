@@ -16,8 +16,8 @@ function App() {
 
   async function getSubmitChannel(channel) {
     const channelID = await validadeChannel(channel);
-    console.log(channel);
-    console.log(channelID);
+    // console.log(channel);
+    // console.log(channelID);
     if (!channelID) {
       setInvalidChannel(true);
       setSiteClickabe(false);
@@ -69,7 +69,7 @@ function App() {
   }
 
   function IsYoutubeLink(link) {
-    console.log("Função isYtLink: " + link);
+    // console.log("Função isYtLink: " + link);
     try {
       const url = new URL(link);
       return !!url.host.match(/(^|\.)youtube.com$/);
@@ -85,7 +85,7 @@ function App() {
     const videodetails = await getChannelVideos(channelID); //setvideos
 
     if (!statistics || !videodetails) {
-      console.log("Respostas: " + statistics + " e " + videodetails);
+      // console.log("Respostas: " + statistics + " e " + videodetails);
     }
 
     setStatistics(statistics);
