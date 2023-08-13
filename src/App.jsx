@@ -9,7 +9,8 @@ import InvalidURL from "./components/invalidURL/invalidURL";
 function App() {
   const [statistics, setStatistics] = useState({});
   const [videos, setVideos] = useState();
-  const url = import.meta.env.VITE_URL_BACKEND_SITE;
+  // const url = import.meta.env.VITE_URL_BACKEND_SITE;
+  const url = import.meta.env.VITE_URL_BACKEND;
   const [invalidChannel, setInvalidChannel] = useState(false);
   const [siteClickabe, setSiteClickabe] = useState(true);
 
