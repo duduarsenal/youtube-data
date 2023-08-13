@@ -28,7 +28,7 @@ export default function LastVideos(props) {
     // console.log(props.videos);
     // setStatisticsChannel(props.statistics)
     
-    const arrayVideos = props.videos.map(async (video) => {
+    const arrayVideos = props.videos && props.videos.map(async (video) => {
       const {title, publishedAt, resourceId, viewCount, thumbnails, commentCount, likeCount} = video;
       const tempObj = {
         title: title,
@@ -42,8 +42,8 @@ export default function LastVideos(props) {
       return tempObj;
     })
 
-    setSanitizeValues(await Promise.all(arrayVideos));
-    console.log(sanitizeValues);
+    arrayVideos ? setSanitizeValues(await Promise.all(arrayVideos)) : "";
+    // console.log(sanitizeValues);
   }
 
   useEffect(() => {
