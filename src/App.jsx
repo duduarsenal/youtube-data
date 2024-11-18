@@ -1,50 +1,45 @@
-import { useEffect, useState } from "react";
-// import process from 'dotenv'
+import { useState } from "react";
 
 import InputUser from "./components/inputUser/inputUser";
 import ChannelData from "./components/channelData/channelData";
 import LastVideos from "./components/lastVideos/lastVideos";
 import InvalidURL from "./components/invalidURL/invalidURL";
 import Loading from "./components/loading/loading";
+const url = import.meta.env.VITE_URL_BACKEND
 
 function App() {
-  const [statistics, setStatistics] = useState({});
-  const [videos, setVideos] = useState();
-  // const url = import.meta.env.VITE_URL_BACKEND_SITE;
-  const url = import.meta.env.VITE_URL_BACKEND;
-  const [invalidChannel, setInvalidChannel] = useState(false);
-  const [siteClickabe, setSiteClickabe] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [statistics, setStatistics] = useState({})
+  const [videos, setVideos] = useState()
+  const [invalidChannel, setInvalidChannel] = useState(false)
+  const [siteClickabe, setSiteClickabe] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   async function getSubmitChannel(channel) {
     setLoading(true)
-    const channelID = await validadeChannel(channel);
-    // console.log(channel);
-    // console.log(channelID);
+    const channelID = await validadeChannel(channel)
     if (!channelID) {
-      setLoading(false);
-      setInvalidChannel(true);
-      setSiteClickabe(false);
+      setLoading(false)
+      setInvalidChannel(true)
+      setSiteClickabe(false)
     }
-    getChannelData(channelID);
+    getChannelData(channelID)
   }
 
   async function validadeChannel(channelName) {
     if (channelName.includes("https://")) {
-      // setChannelID(getMetaID(channelName));
-      return await getMetaID(channelName);
+      return await getMetaID(channelName)
     } else if (channelName.includes("/")) {
-      return await getMetaID(`https://${channelName}`);
+      return await getMetaID(`https://${channelName}`)
     } else {
       const linkWithName = channelName.includes("@")
         ? `https://www.youtube.com/${channelName}`
-        : `https://www.youtube.com/@${channelName}`;
+        : `https://www.youtube.com/@${channelName}`
 
       if (!(await getMetaID(linkWithName))) {
-        const linkWithID = `https://www.youtube.com/channel/${channelName}`;
-        return await getMetaID(linkWithID);
+        const linkWithID = `https://www.youtube.com/channel/${channelName}`
+        return await getMetaID(linkWithID)
       }
-      return await getMetaID(linkWithName);
+      return await getMetaID(linkWithName)
     }
   }
 
@@ -53,35 +48,32 @@ function App() {
       const URLResponse = await fetch(
         `https://api.codetabs.com/v1/proxy?quest=${link}`
       );
-      const response = await URLResponse.text();
+      const response = await URLResponse.text()
 
-      let array = response.split('<meta itemprop="identifier" content=');
+      let array = response.split('<meta itemprop="identifier" content=')
 
       if (array.length > 1) {
-        array = array[1].split(">");
-        array = array[0].split('"');
-        const channel_ID = array[1];
+        array = array[1].split(">")
+        array = array[0].split('"')
+        const channel_ID = array[1]
 
-        // console.log(channel_ID)
         return channel_ID;
       }
 
-      return false; //console.log("Não possui a tag meta: Linha 57");
+      return false; //console.log("Não possui a tag meta: Linha 57")
     }
 
-    return false; //console.log("Não é um link do youtube");
+    return false; //console.log("Não é um link do youtube")
   }
 
   function IsYoutubeLink(link) {
-    // console.log("Função isYtLink: " + link);
     try {
       const url = new URL(link);
       return !!url.host.match(/(^|\.)youtube.com$/);
-      // return url
     } catch (err) {
       console.error(err);
     }
-    return false; //console.log("não é um link valido");
+    return false; //console.log("não é um link valido")
   }
 
   async function getChannelData(channelID) {
@@ -95,30 +87,26 @@ function App() {
 
   async function getChannelStatistics(channelID) {
     try {
-      const urlResponse = await fetch(`${url}/api/statistics/${channelID}`);
-      const response = await urlResponse.json();
+      const urlResponse = await fetch(`${url}/api/statistics/${channelID}`)
+      const response = await urlResponse.json()
 
-      return response;
+      return response
     } catch (error) {
-      console.log(`Erro getchannelstatistics: ${error}`);
+      console.log(`Erro getchannelstatistics: ${error}`)
     }
   }
 
   async function getChannelVideos(channelID) {
-    channelID = channelID.replace(channelID[1], "U");
+    channelID = channelID.replace(channelID[1], "U")
     try {
-      const urlResponse = await fetch(`${url}/api/videos/${channelID}`);
-      const response = await urlResponse.json();
+      const urlResponse = await fetch(`${url}/api/videos/${channelID}`)
+      const response = await urlResponse.json()
 
       return response;
     } catch (error) {
-      console.log(`Erro getchannelvideos: ${error}`);
+      console.log(`Erro getchannelvideos: ${error}`)
     }
   }
-
-  // useEffect(() => {
-  //   getSubmitChannel("@duelista")
-  // }, []);
 
   return (
     <div className="bg-[#0B090A] min-h-screen h-max">
